@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Display all file in the current dirsctory in list format
+#   Only displays the part of the name after the first dash. 
+list=$(ls)
+
+for item in $list;
+do
+    echo "$item" | cut -d '-' -f2
+done
