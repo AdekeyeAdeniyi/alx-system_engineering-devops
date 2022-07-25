@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+#Using Case Statement
+# Displays "bad luck from China" for 4th iteration
+# Displays "bad luck from Japan" for 9th iteration
+# Displays "bad luck from Italy" for 17th iteration
+# Display whole integers for other iterations
+
+count=1
+
+while [ $count -le 20 ]
+do
+    case $count in 
+        4)
+        echo "bad luck from China"
+        ;;
+        9)
+        echo "bad luck from Japan"
+        ;;
+        17)
+        echo "bad luck from Italy"
+        ;;
+        *)
+        echo $count
+        ;;
+    esac
+
+    (( count++ ))
+
+    done
