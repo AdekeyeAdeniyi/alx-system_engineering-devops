@@ -9,7 +9,7 @@ while [ $count -lt 10 ]
 do
     if [ $count -eq 3 ]
     then
-        echo "Bad Luck"
+        echo "Bad luck"
     elif [ $count -eq 7 ]
     then
         echo "Good luck"
