@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# display the content in "etc/passwd" file
+#   -   username
+#   -   user id
+#   -   home directory
+
+while read passwd; do
+  echo "$passwd" | cut -d ':' -f1,3,6
+done < "/etc/passwd"
