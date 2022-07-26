@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# To infinity and beyond
+# PID made easy
 
-while true; do
-  echo "To infinity and beyond"
-  sleep 2
-done
+pgrep -l bash
