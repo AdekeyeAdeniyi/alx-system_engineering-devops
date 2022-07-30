@@ -7,7 +7,7 @@
 IP="$1"
 if [ "$IP" ]
 then
-    ping -n 5 "$IP"
+    ping -c 5 "$IP"
 else
     echo "$(basename $0) {IP_ADDRESS}"
 fi
