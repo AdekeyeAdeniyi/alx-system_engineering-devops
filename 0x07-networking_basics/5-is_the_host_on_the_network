@@ -4,12 +4,14 @@
 # Ping the IP 5 times
 
 
+# ip variable
 IP="${1}"
-fn=$(basename $0)
 
-if [ "$IP" ]
-then
-    ping -c 5 "$IP"
+# filename variable
+fn=$(basename "${BASH_SOURCE[@]}")
+
+if ! [ "$IP" ]; then
+	echo "Usage: ${fn} {IP_ADDRESS}"
 else
-    echo "Usage: $fn {IP_ADDRESS}"
+	ping -c 5 "${IP}"
 fi
