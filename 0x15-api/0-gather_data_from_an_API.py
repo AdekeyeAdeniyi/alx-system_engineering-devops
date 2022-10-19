@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """
-    Python Script that prints
-        - Employee Name
-        - Completed task / Total task
-        - Lists of completed task
-    using a REST API and Empolyee ID.
+Python Script that prints
+Employee Name
+Completed task / Total task
+Lists of completed task
+using a REST API and Empolyee ID.
 """
 import re
 import requests
