@@ -35,9 +35,9 @@ if __name__ == '__main__':
         empolyee = url_request("users", employee_id)
         todos = url_request("todos")
 
-        empolyee_name = empolyee['name']
-        tasks = list(filter(lambda x: x['userId'] == employee_id, todos))
-        completed_task = list(filter(lambda x: x['completed'], tasks))
+        empolyee_name = empolyee.get('name')
+        tasks = list(filter(lambda x: x.get('userId') == employee_id, todos))
+        completed_task = list(filter(lambda x: x.get('completed'), tasks))
         completed_task_no = len(completed_task)
         total_task = len(tasks)
 
