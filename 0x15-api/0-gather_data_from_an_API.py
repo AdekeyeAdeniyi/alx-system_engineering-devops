@@ -7,26 +7,46 @@
     using a REST API and Empolyee ID.
 """
 
-import requests
-from sys import argv
+import json
+import sys
+import urllib.request
 
-if __name__ == "__main__":
-    if len(argv) > 1:
-        user = argv[1]
-        url = "https://jsonplaceholder.typicode.com/"
-        req = requests.get("{}users/{}".format(url, user))
-        name = req.json().get("name")
-        if name is not None:
-            jreq = requests.get(
-                "{}todos?userId={}".format(
-                    url, user)).json()
-            alltsk = len(jreq)
-            completedtsk = []
-            for t in jreq:
-                if t.get("completed") is True:
-                    completedtsk.append(t)
-            count = len(completedtsk)
-            print("Employee {} is done with tasks({}/{}):"
-                  .format(name, count, alltsk))
-            for title in completedtsk:
-                print("\t {}".format(title.get("title")))
+employee_id = int(sys.argv[1])
+url = 'https://jsonplaceholder.typicode.com'
+
+
+def url_request(query, id=None):
+    """ Returns data from HTTP Request
+    """
+    if id:
+        with urllib.request.urlopen(url=f'{url}/{query}/{id}') as user_data:
+            body = user_data.read()
+            response = json.loads(body)
+            return response
+    else:
+        with urllib.request.urlopen(url=f'{url}/{query}/') as user_data:
+            body = user_data.read()
+            response = json.loads(body)
+            return response
+
+
+if __name__ == '__main__':
+    if employee_id:
+        empolyee = url_request("users", employee_id)
+        todos = url_request("todos")
+
+        empolyee_name = empolyee['name']
+        tasks = list(filter(lambda x: x['userId'] == employee_id, todos))
+        completed_task = list(filter(lambda x: x['completed'], tasks))
+        completed_task_no = len(completed_task)
+        total_task = len(tasks)
+
+        print('Employee {} is done with tasks({}/{}):'.format(
+            empolyee_name,
+            completed_task_no,
+            total_task
+        ))
+
+        if completed_task_no:
+            for task in completed_task:
+                print('\t', task['title'])
