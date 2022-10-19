@@ -16,8 +16,8 @@ if __name__ == '__main__':
     if len(sys.argv) > 0:
         if re.fullmatch(r'\d+', sys.argv[1]):
             id = int(sys.argv[1])
-            empolyee = requests.get(f'{API}/users/{id}').json()
-            todos = requests.get(f'{API}/todos').json()
+            empolyee = requests.get('{}/users/{}'.format(API, id)).json()
+            todos = requests.get('{}/todos'.format(API)).json()
             tasks = list(filter(lambda x: x.get('userId') == id, todos))
             completed_task = list(filter(lambda x: x.get('completed'), tasks))
             print(
@@ -28,4 +28,4 @@ if __name__ == '__main__':
                 )
             )
             for task in completed_task:
-                print('\t', task.get('title'))
+                print('\t {}'.format(task.get('title')))
