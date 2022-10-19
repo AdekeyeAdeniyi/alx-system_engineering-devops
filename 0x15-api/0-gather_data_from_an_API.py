@@ -49,4 +49,4 @@ if __name__ == '__main__':
 
         if completed_task_no:
             for task in completed_task:
-                print('\t', task['title'])
+                print('\t', task.get('title'))
