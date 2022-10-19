@@ -24,7 +24,7 @@ if __name__ == '__main__':
                 for task in tasks:
                     employee_file.write('"{}","{}","{}","{}"\n'.format(
                         id,
-                        empolyee.get('name'),
+                        empolyee.get('username'),
                         task.get('completed'),
                         task.get('title')
                     ))
