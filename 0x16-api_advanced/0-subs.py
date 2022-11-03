@@ -2,12 +2,7 @@
 """
     Returns number of (not active users, total subscribers) of a Reddit Account
 """
-from requests import get
-from sys import argv
-
-subreddit = argv[1]
-headers = {'User-Agent': 'Mozilla/5.0'}
-
+import requests
 
 def number_of_subscribers(subreddit):
     """
@@ -21,14 +16,15 @@ def number_of_subscribers(subreddit):
             Number of Subscribers
     """
 
-    response = get(
+    response = requests.get(
         'https://www.reddit.com/r/{}/about.json?limit=10'.format(subreddit),
-        headers=headers,
+        headers={'User-Agent': 'Mozilla/5.0'},
+        allow_redirects=False
     )
 
     body = response.json()
 
     if (response.status_code != 404):
-        return (body['data']['subscribers'])
+        return (body.get('data').get('subscribers'))
     else:
         return (0)
