@@ -19,8 +19,9 @@ def top_ten(subreddit):
         allow_redirects=False,
         params={'limit': 10}
     )
+    body = response.json()
     if (response.status_code == 200):
-        posts = response.json().get('data').get('children')
+        posts = body.get('data').get('children')
         for post in posts:
             print(post.get('data').get('title'))
     else:
