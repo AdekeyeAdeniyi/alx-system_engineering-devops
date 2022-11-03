@@ -14,9 +14,10 @@ def top_ten(subreddit):
             subreddit(str): reddit account user name
     """
     response = requests.get(
-        'https://www.reddit.com/r/{}/top.json?limit=10'.format(subreddit),
+        'https://www.reddit.com/r/{}/top.json'.format(subreddit),
         headers={'User-Agent': 'Mozilla/5.0'},
-        allow_redirects=False
+        allow_redirects=False,
+        params={'limit': 10}
     )
     if response.status_code == 200:
         posts = response.json().get('data').get('children')
