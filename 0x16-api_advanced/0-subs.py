@@ -4,6 +4,7 @@
 """
 import requests
 
+
 def number_of_subscribers(subreddit):
     """
         Return total number of subscribers of a `Reddit User`
